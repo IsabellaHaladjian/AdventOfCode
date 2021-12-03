@@ -49,10 +49,12 @@ public class Day3 {
                     gamma[i] = 1;
                     epsilon[i] = 0;
                 }
-                System.out.println("gamma: " + i + " " + gamma[i]);
-                System.out.println("epsilon: " + i + " " + epsilon[i]);
+                System.out.println("gamma: " + i + " " + gamma[i]); //gamma: 111011100000 = 32, 64, 128, 512, 1024, 2048 = 3808
+                System.out.println("epsilon: " + i + " " + epsilon[i]); //epsilon: 000100011111 = 1, 2, 4, 8, 16, 256 = 287 
 
             }
+
+            //TODO: doesn't work, fix this
 
             /*double[] gammaDecimal = new double[12];
             double[] epsilonDecimal = new double[12];
@@ -72,6 +74,72 @@ public class Day3 {
             System.out.println("gamma: " + gammaTotal);
             System.out.println("epsilon: " + epsilonTotal);
             System.out.println("power consumption: " + (gammaTotal * epsilonTotal)); */
+
+            reader.close(); 
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+        }
+ 
+    }
+
+    public static void challenge2() {
+
+        try{
+
+            File input = new File("/Users/isabellahaladjian/Desktop/AdventOfCode-2021/AdventOfCode2021/src/Day3Input.txt");
+            Scanner reader = new Scanner(input);
+
+            ArrayList<String> lines = new ArrayList<String>();
+
+            int[] zeroes = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            int[] ones = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+            while(reader.hasNext()) {
+                lines.add(reader.next());
+            }
+
+            int zeroesCounter = 0;
+            int onesCounter = 0;
+
+            while(lines.size() > 1) {
+
+                int times = 0;
+
+                for(int i = 0; i < lines.size(); i++) {
+                    if(lines.get(i).indexOf("0", times) == 0) {
+                        zeroesCounter++;
+                    } else if(lines.get(i).indexOf("1", times) == 0) {
+                        onesCounter++;
+                    }
+                }
+    
+                if(zeroesCounter > onesCounter) {
+                    for(int i = 0; i < lines.size(); i++) {
+                        if(lines.get(i).indexOf("1", times) == 0) {
+                            lines.remove(lines.get(i));
+                        }
+                    }
+                } else if(onesCounter > zeroesCounter) {
+                    for(int i = 0; i < lines.size(); i++) {
+                        if(lines.get(i).indexOf("0", times) == 0) {
+                            lines.remove(lines.get(i));
+                        }
+                    }
+                } else if(onesCounter == zeroesCounter) {
+                    for(int i = 0; i < lines.size(); i++) {
+                        if(lines.get(i).indexOf("0", times) == 0) {
+                            lines.remove(lines.get(i));
+                        }
+                    }
+                }
+
+                times++;
+
+            }
+
+            System.out.println(lines);
 
             reader.close(); 
 
