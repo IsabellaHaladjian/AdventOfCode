@@ -1,8 +1,10 @@
+//TODO: come back and fix day 3
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.Math;
+//import java.lang.Math;
 
 public class Day3 {
     
@@ -54,7 +56,7 @@ public class Day3 {
 
             }
 
-            //TODO: doesn't work, fix this
+            //TODO: binary to decimal convertor doesn't work, fix this
 
             /*double[] gammaDecimal = new double[12];
             double[] epsilonDecimal = new double[12];
@@ -68,8 +70,13 @@ public class Day3 {
                 epsilonDecimal[i] = otherBinary;
             }
 
-            double gammaTotal = gammaDecimal[0] + gammaDecimal[1] + gammaDecimal[2] + gammaDecimal[3] + gammaDecimal[4] + gammaDecimal[5] + gammaDecimal[6] + gammaDecimal[7] + gammaDecimal[8] + gammaDecimal[9] + gammaDecimal[10] + gammaDecimal[11];
-            double epsilonTotal = epsilonDecimal[0] + epsilonDecimal[1] + epsilonDecimal[2] + epsilonDecimal[3] + epsilonDecimal[4] + epsilonDecimal[5] + epsilonDecimal[6] + epsilonDecimal[7] + epsilonDecimal[8] + epsilonDecimal[9] + epsilonDecimal[10] + epsilonDecimal[11];
+            double gammaTotal = 0;
+            double epsilonTotal = 0;
+
+            for(int i = 0; i < 12; i++) {
+                gammaTotal = gammaTotal + gammaDecimal[i];
+                epsilonTotal = epsilonTotal + epsilonDecimal[i];
+            }
 
             System.out.println("gamma: " + gammaTotal);
             System.out.println("epsilon: " + epsilonTotal);
@@ -84,7 +91,7 @@ public class Day3 {
  
     }
 
-    public static void challenge2() {
+    public static void challenge2generator() {
 
         try{
 
@@ -92,9 +99,6 @@ public class Day3 {
             Scanner reader = new Scanner(input);
 
             ArrayList<String> lines = new ArrayList<String>();
-
-            int[] zeroes = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            int[] ones = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
             while(reader.hasNext()) {
                 lines.add(reader.next());
@@ -137,6 +141,73 @@ public class Day3 {
 
                 times++;
 
+                System.out.println("02 Generator Rating: " + lines);
+
+            }
+
+            System.out.println(lines);
+
+            reader.close(); 
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+        }
+ 
+    }
+
+    public static void challenge2scrubber() {
+
+        try{
+
+            File input = new File("/Users/isabellahaladjian/Desktop/AdventOfCode-2021/AdventOfCode2021/src/Day3Input.txt");
+            Scanner reader = new Scanner(input);
+
+            ArrayList<String> lines = new ArrayList<String>();
+
+            while(reader.hasNext()) {
+                lines.add(reader.next());
+            }
+
+            int zeroesCounter = 0;
+            int onesCounter = 0;
+
+            while(lines.size() > 1) {
+
+                int times = 0;
+
+                for(int i = 0; i < lines.size(); i++) {
+                    if(lines.get(i).indexOf("0", times) == 0) {
+                        zeroesCounter++;
+                    } else if(lines.get(i).indexOf("1", times) == 0) {
+                        onesCounter++;
+                    }
+                }
+    
+                if(zeroesCounter < onesCounter) {
+                    for(int i = 0; i < lines.size(); i++) {
+                        if(lines.get(i).indexOf("1", times) == 0) {
+                            lines.remove(lines.get(i));
+                        }
+                    }
+                } else if(onesCounter < zeroesCounter) {
+                    for(int i = 0; i < lines.size(); i++) {
+                        if(lines.get(i).indexOf("0", times) == 0) {
+                            lines.remove(lines.get(i));
+                        }
+                    }
+                } else if(onesCounter == zeroesCounter) {
+                    for(int i = 0; i < lines.size(); i++) {
+                        if(lines.get(i).indexOf("0", times) == 0) {
+                            lines.remove(lines.get(i));
+                        }
+                    }
+                }
+
+                times++;
+
+                System.out.println("C02 Scrubber rating: " + lines);
+
             }
 
             System.out.println(lines);
@@ -153,6 +224,8 @@ public class Day3 {
     public static void main(String[] args) {
 
         challenge1();
+        challenge2generator();
+        challenge2scrubber();
 
     }
 
