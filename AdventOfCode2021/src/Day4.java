@@ -30,15 +30,21 @@ public class Day4 {
         }
 
         List<String> separatedLines = new ArrayList<String>();
-            String space = " ";
-            String[] line = allBoards.get(2).split(space);
-            separatedLines = Arrays.asList(line);
-            for(int i = 0; i < line.length; i++) {
-                if(separatedLines.get(i).equals(" ")) {
-                    separatedLines.remove(separatedLines.get(i));
-                }
-                System.out.println(separatedLines.get(i));
+        String space = " ";
+        String[] line = allBoards.get(2).split(space);
+        separatedLines = Arrays.asList(line);
+        for(int i = 0; i < line.length; i++) {
+            if(separatedLines.get(i).equals(" ")) {
+                separatedLines.remove(separatedLines.get(i));
             }
+            System.out.println(separatedLines.get(i));
+        }
+
+        
+
+
+
+        
 
     }
 
