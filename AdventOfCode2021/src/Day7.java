@@ -1,12 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day7 {
 
     private static String[] positions;
    
-    public static double getAverage() {
+    public static int getMedian() {
 
         try {
 
@@ -26,26 +27,27 @@ public class Day7 {
 
         }
 
-        double total = 0;
-        double avg = 0;
-
-        for(int i = 0; i < positions.length; i++) {
-            double position = Integer.valueOf(positions[i]);
-            total = position + total;
+        Arrays.sort(positions);
+        int length = positions.length;
+        int medianIndex = 0;
+        if(length % 2 == 0) {
+            medianIndex = (length / 2);
+        } else {
+            medianIndex = (length + 1) / 2;
         }
+        int median = Integer.valueOf(positions[medianIndex]);
 
-        avg = total / positions.length;
-        return avg;
+        return median;
 
     }
 
-    public static void challenge1(int intAvg) {
+    public static void challenge1(int median) {
 
         int fuelSpent = 0;
 
         for(int p = 0; p < positions.length; p++) {
             int position = Integer.valueOf(positions[p]);
-            fuelSpent = fuelSpent + Math.abs(position - intAvg); 
+            fuelSpent = fuelSpent + Math.abs(position - median); 
         }
 
         System.out.println(fuelSpent);
@@ -53,8 +55,8 @@ public class Day7 {
     }
 
     public static void main(String[] args) {
-        System.out.println(getAverage());
-        challenge1(5);
+        System.out.println(getMedian());
+        challenge1(getMedian());
     }
 
 }
