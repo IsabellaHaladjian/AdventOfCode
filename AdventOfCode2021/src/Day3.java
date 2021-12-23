@@ -7,7 +7,7 @@ import java.util.Scanner;
 //import java.lang.Math;
 
 public class Day3 {
-    
+
     public static void challenge1() {
 
         ArrayList<String> lines = new ArrayList<String>();
@@ -91,7 +91,7 @@ public class Day3 {
         ArrayList<String> lines = new ArrayList<String>();
 
         try{
-            File input = new File("/Users/isabellahaladjian/Desktop/AdventOfCode-2021/AdventOfCode2021/src/Day3Input.txt");
+            File input = new File("/Users/isabellahaladjian/Desktop/AdventOfCode-2021/AdventOfCode2021/src/Day3ExInput.txt");
             Scanner reader = new Scanner(input);
             while(reader.hasNext()) {
                 lines.add(reader.next());
@@ -102,18 +102,20 @@ public class Day3 {
             e.printStackTrace();
         }
 
-        int zeroesCounter = 0;
-        int onesCounter = 0;
+        int times = 0;
 
         while(lines.size() > 1) {
-            int times = 0;
-            for(int i = 0; i < lines.size(); i++) {
+
+        int zeroesCounter = 0;
+        int onesCounter = 0;
+        
+            /*for(int i = 0; i < lines.size(); i++) {
                 if(lines.get(i).indexOf("0", times) == 0) {
                     zeroesCounter++;
                 } else if(lines.get(i).indexOf("1", times) == 0) {
                     onesCounter++;
                 }
-            }
+            } */
 
             if(zeroesCounter > onesCounter) {
                 for(int i = 0; i < lines.size(); i++) {
@@ -121,12 +123,14 @@ public class Day3 {
                         lines.remove(lines.get(i));
                     }
                 }
+                System.out.println("zeroes");
             } else if(onesCounter > zeroesCounter) {
                 for(int i = 0; i < lines.size(); i++) {
                     if(lines.get(i).indexOf("0", times) == 0) {
                         lines.remove(lines.get(i));
                     }
                 }
+                System.out.println("ones");
             } else if(onesCounter == zeroesCounter) {
                 for(int i = 0; i < lines.size(); i++) {
                     if(lines.get(i).indexOf("0", times) == 0) {
@@ -136,8 +140,9 @@ public class Day3 {
             }
 
             times++;
-            System.out.println("02 Generator Rating: " + lines);
         }
+
+        System.out.println("02 Generator Rating: " + lines);
     }
 
     public static void challenge2scrubber() {
@@ -145,7 +150,7 @@ public class Day3 {
         ArrayList<String> lines = new ArrayList<String>();
 
         try{
-            File input = new File("/Users/isabellahaladjian/Desktop/AdventOfCode-2021/AdventOfCode2021/src/Day3Input.txt");
+            File input = new File("/Users/isabellahaladjian/Desktop/AdventOfCode-2021/AdventOfCode2021/src/Day3ExInput.txt");
             Scanner reader = new Scanner(input);
             while(reader.hasNext()) {
                 lines.add(reader.next());
@@ -159,9 +164,9 @@ public class Day3 {
         int zeroesCounter = 0;
         int onesCounter = 0;
 
-        while(lines.size() > 1) {
+        int times = 0;
 
-            int times = 0;
+        while(lines.size() > 1) {
 
             for(int i = 0; i < lines.size(); i++) {
                 if(lines.get(i).indexOf("0", times) == 0) {
@@ -192,15 +197,15 @@ public class Day3 {
             }
 
             times++;
-            System.out.println("C02 Scrubber rating: " + lines);
         }
+        System.out.println("C02 Scrubber rating: " + lines);
     }
 
     public static void main(String[] args) {
 
         //challenge1();
-        challenge2generator();
-        //challenge2scrubber();
+        challenge2generator(); //02 Generator Rating: [111011000101] = 1,0,4,64,128,512,1024,2048 = 3781
+        //challenge2scrubber(); //C02 Scrubber rating: [011111001001] = 1993
 
     }
 
