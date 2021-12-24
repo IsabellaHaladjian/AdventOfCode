@@ -49,7 +49,7 @@ public class Day8 {
                         break;
                     case 7: counter++;
                         break;
-                    default: counter = counter;
+                    default: counter = counter + 0;
                         break;             
                 }
             }
