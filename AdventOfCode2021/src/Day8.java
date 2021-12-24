@@ -1,3 +1,5 @@
+//Doesn't work for part 2
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -6,6 +8,7 @@ import java.util.Scanner;
 public class Day8 {
 
     public static ArrayList<String> outputs = new ArrayList<String>();
+    public static ArrayList<String> inputs = new ArrayList<String>();
 
     public static void challenge1() {
 
@@ -31,8 +34,10 @@ public class Day8 {
 
         for(int i = 0; i < lines.size(); i++) {
             String[] split = lines.get(i).split(" | ");
-            String concated = split[11].concat(" " + split[12]).concat(" " + split[13]).concat(" " + split[14]);
-            outputs.add(concated);
+            String concatedInputs = split[0].concat(" " + split[1]).concat(" " + split[2]).concat(" " + split[3]).concat(" " + split[4]).concat(" " + split[6]).concat(" " + split[7]).concat(" " + split[8]).concat(" " + split[9]);
+            String concatedOutputs = split[11].concat(" " + split[12]).concat(" " + split[13]).concat(" " + split[14]);
+            outputs.add(concatedOutputs);
+            inputs.add(concatedInputs);
         }
 
         int counter = 0;
@@ -64,15 +69,16 @@ public class Day8 {
         ArrayList<Integer> concatedValues = new ArrayList<Integer>();
 
         for(int i = 0; i < outputs.size(); i++) {
-            String[] indiv = outputs.get(i).split(" ");
-            Integer[] values = new Integer[4];
-            for(int j = 0; j < 4; j++) {
-                values[j] = deduceValues(indiv[j]);
+            String[] indivOutputs = outputs.get(i).split(" ");
+            String[] indivInputs = inputs.get(i).split(" ");
+            Integer[] inputNumbers = new Integer[10];
+            for(int j = 0; j < 10; j++) {
+                inputNumbers[j] = deduceNumbers(indivInputs[j]);
             }
-            String firstValue = values[0].toString();
-            String secondValue = values[1].toString();
-            String thirdValue = values[2].toString();
-            String fourthValue = values[3].toString();
+            String firstValue = inputNumbers[0].toString();
+            String secondValue = inputNumbers[1].toString();
+            String thirdValue = inputNumbers[2].toString();
+            String fourthValue = inputNumbers[3].toString();
             String concated = firstValue.concat(secondValue).concat(thirdValue).concat(fourthValue);
             concatedValues.add(Integer.parseInt(concated));
         }
@@ -85,42 +91,13 @@ public class Day8 {
 
     }
 
-    public static int deduceValues(String output) {
+    public static int deduceNumbers(String output) {
 
         int length = output.length();
 
         int returnable = 10;
 
-        switch(length) {
-            case 2: returnable = 1;
-                break;
-            case 3: returnable = 7;
-                break;
-            case 4: returnable = 4;
-                break;
-            case 7: returnable = 8;
-                break;
-            case 5:
-                if(output.contains("e")) {
-                    returnable = 5;
-                } else if(output.contains("g")) {
-                    returnable = 2;
-                } else {
-                    returnable = 3;
-                }
-                break;
-            case 6: 
-                if(output.contains("a") && output.contains("f")) {
-                    returnable = 9;
-                } else if(output.contains("a")) {
-                    returnable = 0;
-                } else {
-                    returnable = 6;
-                }
-                break;
-            default: returnable = 10;
-                break;
-        }
+
 
         return returnable;
 
