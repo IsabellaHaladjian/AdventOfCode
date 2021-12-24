@@ -69,7 +69,7 @@ public class Day8 {
         ArrayList<Integer> concatedValues = new ArrayList<Integer>();
 
         for(int i = 0; i < outputs.size(); i++) {
-            String[] indivOutputs = outputs.get(i).split(" ");
+            //String[] indivOutputs = outputs.get(i).split(" ");
             String[] indivInputs = inputs.get(i).split(" ");
             Integer[] inputNumbers = new Integer[10];
             for(int j = 0; j < 10; j++) {
@@ -93,7 +93,7 @@ public class Day8 {
 
     public static int deduceNumbers(String output) {
 
-        int length = output.length();
+        //int length = output.length();
 
         int returnable = 10;
 
