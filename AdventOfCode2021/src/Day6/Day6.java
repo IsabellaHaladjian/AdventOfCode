@@ -1,3 +1,4 @@
+package Day6;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

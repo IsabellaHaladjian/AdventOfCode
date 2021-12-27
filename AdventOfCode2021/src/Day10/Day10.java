@@ -1,3 +1,4 @@
+package Day10;
 /*
 FIXME: doesn't work
 */
