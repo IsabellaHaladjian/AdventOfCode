@@ -1,5 +1,3 @@
-//TODO: come back and fix day 3
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -58,7 +56,9 @@ public class Day3 {
             System.out.println("epsilon: " + i + " " + epsilon[i]); //epsilon: 000100011111 = 1, 2, 4, 8, 16, 256 = 287 
         }
 
-            //TODO: binary to decimal convertor doesn't work, fix this
+            /*
+            binary to decimal convertor doesn't work, fix this
+            */
 
             /*double[] gammaDecimal = new double[12];
             double[] epsilonDecimal = new double[12];
