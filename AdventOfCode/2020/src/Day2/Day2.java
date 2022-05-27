@@ -67,10 +67,45 @@ public class Day2 {
 
     }
 
+    public static int challenge2() {
+
+        int validPasswordCounter = 0;
+
+        for(int i = 0; i < readings.size(); i++) {
+
+            String line = readings.get(i); 
+
+            String[] twoParts = line.split(":");
+            String[] chars = twoParts[1].split("|");
+
+            String[] minMax = twoParts[0].split("-");
+            String[] maxChar = minMax[1].split(" ");
+
+            int firstDigit = Integer.parseInt(minMax[0]);
+            int secondDigit = Integer.parseInt(maxChar[0]);
+            String letter = maxChar[1];
+
+            if(chars[firstDigit].equals(letter)) {
+                validPasswordCounter++;
+            } else if(chars[secondDigit].equals(letter)) {
+                validPasswordCounter++;
+            }
+
+            if(chars[firstDigit].equals(letter) && chars[secondDigit].equals(letter)) {
+                validPasswordCounter--;
+            }
+
+        }
+
+        return validPasswordCounter;
+
+    }
+
     public static void main(String args[]) {
 
         parseInput();
-        System.out.println(challenge1());
+        System.out.println("Challenge 1: " + challenge1());
+        System.out.println("Challenge 2: " + challenge2());
 
     }
 

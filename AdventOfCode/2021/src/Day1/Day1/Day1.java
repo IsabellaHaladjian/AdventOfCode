@@ -1,4 +1,5 @@
 package Day1;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class Day1 {
             ArrayList<Integer> readings = new ArrayList<Integer>();
             while(input.hasNextInt()) {
                 readings.add(input.nextInt());
-            }
+            } 
 
             int counter = 0;
 
